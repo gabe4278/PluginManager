@@ -127,6 +127,6 @@ class Main extends PluginBase implements Listener {
     }
 
     public function sendUsage($sender) {
-        $sender->sendMessage(TextFormat::RED . "Usage: /pluginmanager <enable/disable/reload/reloadconfig> <pluginName>");
+        $sender->sendMessage(TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
     }
 }
