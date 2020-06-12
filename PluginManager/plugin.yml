@@ -1,0 +1,10 @@
+name: PluginManager
+main: Gabry\PluginManager\Main
+api: [3.0.0]
+version: 0.1
+
+commands:
+ pluginmanager:
+  description: Manages the server's plugins.
+  default: op
+  usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>
