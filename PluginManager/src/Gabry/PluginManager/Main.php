@@ -121,12 +121,33 @@ class Main extends PluginBase implements Listener {
                     return true;
 
                 }
+		if ($args[0] === "help") {
+			if ($titlePrefix !== "") {
+				$sender->sendMessage($titlePrefix . " " . TextFormat::AQUA . "Here are the list of available commands:");
+				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager enable <pluginName> - Enables a plugin.");
+				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager disable <pluginName> - Disables a plugin.");
+				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager reload <pluginName> - Reloads a plugin.");
+				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager reloadconfig - Reloads this plugin.");
+			}
+			else {
+				$sender->sendMessage(TextFormat::AQUA . "Here are the list of available commands:");
+				$sender->sendMessage("/pluginmanager enable <pluginName> - Enables a plugin.");
+				$sender->sendMessage("/pluginmanager disable <pluginName> - Disables a plugin.");
+				$sender->sendMessage("/pluginmanager reload <pluginName> - Reloads a plugin.");
+				$sender->sendMessage("/pluginmanager reloadconfig - Reloads this plugin.");
+			}
+		}
                 break;
         }
         return true;
     }
 
     public function sendUsage($sender) {
-        $sender->sendMessage(TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
+	if ($titlePrefix) {
+        	$sender->sendMessage($titlePrefix . " " .  TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
+	}
+	else {
+		$sender->sendMessage(TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
+	}
     }
 }
