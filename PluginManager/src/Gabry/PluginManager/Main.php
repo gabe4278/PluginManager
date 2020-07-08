@@ -61,10 +61,10 @@ class Main extends PluginBase implements Listener {
                 }
                 if (!isset($args[1])) {
                     if ($titlePrefix) {
-                        $this->sendMessage($titlePrefix . " " . TextFormat::RED . "Please provide a plugin name.");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::RED . "Please provide a plugin name.");
                     }
                     else {
-                        $this->sendMessage(TextFormat::RED . "Please provide a plugin name.");
+                        $sender->sendMessage(TextFormat::RED . "Please provide a plugin name.");
                     }
                     return true;
                 }
