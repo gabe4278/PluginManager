@@ -49,7 +49,12 @@ class Main extends PluginBase implements Listener {
                 return true;
                 }
                 if (!isset($args[1])) {
-                    $this->sendUsage($sender);
+		    if ($titlePrefix) {
+                    	$this->sendMessage($titlePrefix . " " . TextFormat::RED . "Please provide a plugin name.");
+		    }
+		    else {
+			$this->sendMessage(TextFormat::RED . "Please provide a plugin name.")
+		    }
                     return true;
                 }
                 if ($args[1] === "PluginManager") {
@@ -136,7 +141,9 @@ class Main extends PluginBase implements Listener {
 				$sender->sendMessage("/pluginmanager reload <pluginName> - Reloads a plugin.");
 				$sender->sendMessage("/pluginmanager reloadconfig - Reloads this plugin.");
 			}
+			return true;
 		}
+		$this->sendUsage($sender);
                 break;
         }
         return true;
