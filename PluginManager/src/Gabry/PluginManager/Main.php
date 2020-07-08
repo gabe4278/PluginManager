@@ -1,6 +1,6 @@
  <?php
 
-namespace Gabry\PluginManager\Main;
+namespace Gabry\PluginManager;
 
 use pocketmine\plugin\PluginBase;
 
