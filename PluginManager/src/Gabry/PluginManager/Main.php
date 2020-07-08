@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace Gabry\PluginManager;
 
@@ -58,7 +58,7 @@ class Main extends PluginBase implements Listener {
                     return true;
                 }
                 if ($args[1] === "PluginManager") {
-                    if ($titlePreifx !== "") {
+                    if ($titlePrefix !== "") {
                         $sender->sendMessage($titlePreifx . " " . TextFormat::RED . "You can't manage that plugin!");
                     }
                     else {
