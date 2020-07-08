@@ -87,10 +87,10 @@ class Main extends PluginBase implements Listener {
                 }
                 if ($args[1] === "PluginManager") {
                     if ($titlePrefix !== "") {
-                        $sender->sendMessage($titlePrefix . " " . TextFormat::RED . "You can't manage that plugin!");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::RED . "The access to that plugin is denied.");
                     }
                     else {
-                        $sender->sendMessage(TextFormat::RED . "You can't manage that plugin!");
+                        $sender->sendMessage(TextFormat::RED . "The access to that plugin is denied.");
                     }
                     return true;
                 }
