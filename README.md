@@ -9,6 +9,7 @@ With the PluginManager plugin, you can control plugins on which to enable, disab
 - /pluginmanager disable <plugin> - Disables the plugin
 - /pluginmanager reload <plugin> - Reloads the plugin
 - /pluginmanager reloadconfig - Reloads the configuration file.
+- /pluginmanager help - Shows this help menu.
 
 (You may use '/pl' or '/plugins' to see all active and inactive plugins.)
 
