@@ -1,4 +1,4 @@
- <?php
+<?php
 
 namespace Gabry\PluginManager;
 
@@ -25,6 +25,17 @@ class Main extends PluginBase implements Listener {
     public function onDisable() {
         $this->getLogger()->info("This plugin is now disabled.");
     }
+
+    public function sendUsage($sender) {
+        $titlePrefix = $this->getConfig()->get("title-prefix");
+        if ($titlePrefix) {
+            $sender->sendMessage($titlePrefix . " " .  TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
+        }
+        else {
+            $sender->sendMessage(TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
+        }
+    }
+
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
         switch($command->getName()) {
             case "pluginmanager":
@@ -33,33 +44,33 @@ class Main extends PluginBase implements Listener {
                     return true;
                 }
                 $pluginManager = $this->getServer()->getPluginManager();
-                $titlePreifx = $this->getConfig()->get("title-prefix");
+                $titlePrefix = $this->getConfig()->get("title-prefix");
                 if (!isset($args[0])) {
                     $this->sendUsage($sender);
                     return true;
                 }
                 if ($args[0] === "reloadconfig") {
                     $this->reloadConfig();
-                    if ($titlePreifx !== "") {
-                        $sender->sendMessage($titlePreifx . " " . TextFormat::GREEN . TextFormat::GREEN . "The configuration files were been reloaded.");
+                    if ($titlePrefix !== "") {
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::GREEN . TextFormat::GREEN . "The configuration files were been reloaded.");
                     }
                     else {
                         $sender->sendMessage(TextFormat::GREEN . "The configuration files were been reloaded.");
                     }
-                return true;
+                    return true;
                 }
                 if (!isset($args[1])) {
-		    if ($titlePrefix) {
-                    	$this->sendMessage($titlePrefix . " " . TextFormat::RED . "Please provide a plugin name.");
-		    }
-		    else {
-			$this->sendMessage(TextFormat::RED . "Please provide a plugin name.");
-		    }
+                    if ($titlePrefix) {
+                        $this->sendMessage($titlePrefix . " " . TextFormat::RED . "Please provide a plugin name.");
+                    }
+                    else {
+                        $this->sendMessage(TextFormat::RED . "Please provide a plugin name.");
+                    }
                     return true;
                 }
                 if ($args[1] === "PluginManager") {
                     if ($titlePrefix !== "") {
-                        $sender->sendMessage($titlePreifx . " " . TextFormat::RED . "You can't manage that plugin!");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::RED . "You can't manage that plugin!");
                     }
                     else {
                         $sender->sendMessage(TextFormat::RED . "You can't manage that plugin!");
@@ -67,8 +78,8 @@ class Main extends PluginBase implements Listener {
                     return true;
                 }
                 if (!$pluginManager->getPlugin($args[1])) {
-                    if ($titlePreifx !== "") {
-                        $sender->sendMessage($titlePreifx . " " . TextFormat::RED . "Plugin " . $args[1] . " does not exist!");
+                    if ($titlePrefix !== "") {
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::RED . "Plugin " . $args[1] . " does not exist!");
                     }
                     else {
                         $sender->sendMessage(TextFormat::RED . "Plugin " . $args[1] . " does not exist!");
@@ -77,8 +88,8 @@ class Main extends PluginBase implements Listener {
                 }
                 if ($args[0] === "enable") {
                     if ($pluginManager->isPluginEnabled($pluginManager->getPlugin($args[1]))) {
-                        if ($titlePreifx !== "") {
-                            $sender->sendMessage($titlePreifx . " " . TextFormat::RED . "Plugin " . $args[1] . " is already enabled!");
+                        if ($titlePrefix !== "") {
+                            $sender->sendMessage($titlePrefix . " " . TextFormat::RED . "Plugin " . $args[1] . " is already enabled!");
                         }
                         else {
                             $sender->sendMessage(TextFormat::RED . "Plugin " . $args[1] . " is already enabled!");
@@ -87,8 +98,8 @@ class Main extends PluginBase implements Listener {
                         return true;
                     }
                     $pluginManager->enablePlugin($pluginManager->getPlugin($args[1]));
-                    if ($titlePreifx !== "") {
-                        $sender->sendMessage($titlePreifx . " " . TextFormat::GREEN . "Plugin " . $args[1] . " is enabled and running.");
+                    if ($titlePrefix !== "") {
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::GREEN . "Plugin " . $args[1] . " is enabled and running.");
                     }
                     else {
                         $sender->sendMessage(TextFormat::GREEN . "Plugin " . $args[1] . " is enabled and running.");
@@ -97,8 +108,8 @@ class Main extends PluginBase implements Listener {
                 }
                 if ($args[0] === "disable") {
                     if (!$pluginManager->isPluginEnabled($pluginManager->getPlugin($args[1]))) {
-                        if ($titlePreifx !== "") {
-                            $sender->sendMessage($titlePreifx . " " . TextFormat::RED . "Plugin " . $args[1] . " is already disabled!");
+                        if ($titlePrefix !== "") {
+                            $sender->sendMessage($titlePrefix . " " . TextFormat::RED . "Plugin " . $args[1] . " is already disabled!");
                         }
                         else {
                             $sender->sendMessage(TextFormat::RED . "Plugin " . $args[1] . " is already disabled!");
@@ -106,8 +117,8 @@ class Main extends PluginBase implements Listener {
                         return true;
                     }
                     $pluginManager->disablePlugin($pluginManager->getPlugin($args[1]));
-                    if ($titlePreifx !== "") {
-                        $sender->sendMessage($titlePreifx . " " . TextFormat::GREEN . "Plugin " . $args[1] . " is disabled.");
+                    if ($titlePrefix !== "") {
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::GREEN . "Plugin " . $args[1] . " is disabled.");
                     }
                     else {
                         $sender->sendMessage(TextFormat::GREEN . "Plugin " . $args[1] . " is disabled.");
@@ -117,8 +128,8 @@ class Main extends PluginBase implements Listener {
                 if ($args[0] === "reload") {
                     $pluginManager->disablePlugin($pluginManager->getPlugin($args[1]));
                     $pluginManager->enablePlugin($pluginManager->getPlugin($args[1]));
-                    if ($titlePreifx !== "") {
-                        $sender->sendMessage($titlePreifx . " " . TextFormat::GREEN . TextFormat::GREEN . "Plugin " . $args[1] . " has been reloaded.");
+                    if ($titlePrefix !== "") {
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::GREEN . TextFormat::GREEN . "Plugin " . $args[1] . " has been reloaded.");
                     }
                     else {
                         $sender->sendMessage(TextFormat::GREEN . "Plugin " . $args[1] . " has been reloaded.");
@@ -126,35 +137,26 @@ class Main extends PluginBase implements Listener {
                     return true;
 
                 }
-		if ($args[0] === "help") {
-			if ($titlePrefix !== "") {
-				$sender->sendMessage($titlePrefix . " " . TextFormat::AQUA . "Here are the list of available commands:");
-				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager enable <pluginName> - Enables a plugin.");
-				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager disable <pluginName> - Disables a plugin.");
-				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager reload <pluginName> - Reloads a plugin.");
-				$sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager reloadconfig - Reloads this plugin.");
-			}
-			else {
-				$sender->sendMessage(TextFormat::AQUA . "Here are the list of available commands:");
-				$sender->sendMessage("/pluginmanager enable <pluginName> - Enables a plugin.");
-				$sender->sendMessage("/pluginmanager disable <pluginName> - Disables a plugin.");
-				$sender->sendMessage("/pluginmanager reload <pluginName> - Reloads a plugin.");
-				$sender->sendMessage("/pluginmanager reloadconfig - Reloads this plugin.");
-			}
-			return true;
-		}
-		$this->sendUsage($sender);
+                if ($args[0] === "help") {
+                    if ($titlePrefix !== "") {
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::AQUA . "Here are the list of available commands:");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager enable <pluginName> - Enables a plugin.");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager disable <pluginName> - Disables a plugin.");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager reload <pluginName> - Reloads a plugin.");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager reloadconfig - Reloads this plugin.");
+                    }
+                    else {
+                        $sender->sendMessage(TextFormat::AQUA . "Here are the list of available commands:");
+                        $sender->sendMessage("/pluginmanager enable <pluginName> - Enables a plugin.");
+                        $sender->sendMessage("/pluginmanager disable <pluginName> - Disables a plugin.");
+                        $sender->sendMessage("/pluginmanager reload <pluginName> - Reloads a plugin.");
+                        $sender->sendMessage("/pluginmanager reloadconfig - Reloads this plugin.");
+                    }
+                    return true;
+                }
+                $this->sendUsage($sender);
                 break;
         }
         return true;
-    }
-
-    public function sendUsage($sender) {
-	if ($titlePrefix) {
-        	$sender->sendMessage($titlePrefix . " " .  TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
-	}
-	else {
-		$sender->sendMessage(TextFormat::RED . "Usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>");
-	}
     }
 }
