@@ -7,4 +7,4 @@ commands:
  pluginmanager:
   description: Manages the server's plugins.
   default: op
-  usage: /pluginmanager <enable|disable|reload|reloadconfig> <pluginName>
+  usage: /pluginmanager <enable|disable|reload|reloadconfig|help> <pluginName>
