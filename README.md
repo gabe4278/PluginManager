@@ -15,4 +15,4 @@ With the PluginManager plugin, you can control plugins on which to enable, disab
 
 If the plugin has problems in it contact me @ Discord (Gabry#6899).
 
-Thank you for reading this, and if you have installed this plugin, thank you for installing this plugin.
+Thank you for reading this, and if you have installed this plugin, thank you for installing it.
