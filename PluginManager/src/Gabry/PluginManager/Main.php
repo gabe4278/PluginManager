@@ -62,6 +62,7 @@ class Main extends PluginBase implements Listener {
                 if ($args[0] === "help") {
                     if ($titlePrefix !== "") {
                         $sender->sendMessage($titlePrefix . " " . TextFormat::AQUA . "Here are the list of available commands:");
+                        $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager help - Shows a list of available commands.");
                         $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager enable <pluginName> - Enables a plugin.");
                         $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager disable <pluginName> - Disables a plugin.");
                         $sender->sendMessage($titlePrefix . " " . TextFormat::WHITE . "/pluginmanager reload <pluginName> - Reloads a plugin.");
@@ -69,6 +70,7 @@ class Main extends PluginBase implements Listener {
                     }
                     else {
                         $sender->sendMessage(TextFormat::AQUA . "Here are the list of available commands:");
+                        $sender->sendMessage("/pluginmanager help - Shows a list of available commands.");
                         $sender->sendMessage("/pluginmanager enable <pluginName> - Enables a plugin.");
                         $sender->sendMessage("/pluginmanager disable <pluginName> - Disables a plugin.");
                         $sender->sendMessage("/pluginmanager reload <pluginName> - Reloads a plugin.");
