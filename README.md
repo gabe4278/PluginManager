@@ -1,15 +1,15 @@
 # PluginManager
 
 **About this plugin**
-With the PluginManager plugin, you can control plugins on which to enable, disable, or reload.
+With the PluginManager plugin, you can control plugins on which to enable, disable, or reload them.
 
 **Commands**
 (Do not include <> when typing arguments!)
-- /pluginmanager enable <plugin> - Enables the plugin
-- /pluginmanager disable <plugin> - Disables the plugin
-- /pluginmanager reload <plugin> - Reloads the plugin
-- /pluginmanager reloadconfig - Reloads the configuration file.
-- /pluginmanager help - Shows this help menu.
+- /pluginmanager enable <plugin> - Enables a plugin.
+- /pluginmanager disable <plugin> - Disables a plugin.
+- /pluginmanager reload <plugin> - Reloads a plugin.
+- /pluginmanager reloadconfig - Reloads this plugin.
+- /pluginmanager help - Shows a list of available commands.
 
 (You may use '/pl' or '/plugins' to see all active and inactive plugins.)
 
