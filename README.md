@@ -1,6 +1,6 @@
 # PluginManager
 
-**About this plugin**
+**About this plugin:**
 With the PluginManager plugin, you can control plugins on which to enable, disable, or reload them.
 
 **Commands**
